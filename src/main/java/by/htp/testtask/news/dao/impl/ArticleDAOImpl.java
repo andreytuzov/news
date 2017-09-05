@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -14,8 +13,8 @@ import by.htp.testtask.news.dao.model.Article;
 @Component
 public class ArticleDAOImpl implements ArticleDAO {
  	
-	private static final SessionFactory factory = new Configuration().configure("hibernate.cfg.xml")
-			.addAnnotatedClass(Article.class).buildSessionFactory();
+	@Autowired
+	private SessionFactory factory;
 	
 	public int create(Article article) {
 		Session session = factory.openSession();
